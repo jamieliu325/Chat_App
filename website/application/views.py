@@ -100,7 +100,6 @@ def remove_seconds_from_messages(msgs):
         message = msg
         message["time"] = remove_seconds(message["time"])
         messages.append(message)
-
     return messages
 
 

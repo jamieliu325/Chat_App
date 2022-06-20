@@ -106,7 +106,7 @@ socket.on("message response", function (msg) {
   add_messages(msg, true);
 });
 
-// displays old messages on screen
+// to display old messages on screen
 window.onload = async function () {
   var msgs = await load_messages();
   for (i = 0; i < msgs.length; i++) {

@@ -2,7 +2,7 @@ from jinja2 import Undefined
 
 def _slice(iterable, pattern):
     """
-    custom built slice method that can be used inside jinja template engine
+    a custom built slice method that can be used inside jinja template engine
     :param iterable: str
     :param pattern: str
     :return: str
