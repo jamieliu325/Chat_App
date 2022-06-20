@@ -1,5 +1,14 @@
 # Chat_App
 
+A simple chat app built in Python, Javascript, HTML, and css.
+
+Application: Python flask
+Communication for users and server: Python SocketIO
+Frontend: Javascript, HTML, and css
+
+run file: main.py in website
+
+
 
 **To solve the 405 error - The method is not allowed for the requested URL, try below in terminal:**
 
