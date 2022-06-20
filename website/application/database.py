@@ -4,15 +4,12 @@ from datetime import datetime
 
 
 # CONSTANTS
-
 FILE = "messages.db"
 PLAYLIST_TABLE = "Messages"
 
 
 class DataBase:
-    """
-    used to connect, write to and read from a local sqlite3 database
-    """
+
     def __init__(self):
         """
         try to connect to file and create cursor
@@ -35,7 +32,7 @@ class DataBase:
 
     def _create_table(self):
         """
-        create new database table if one doesn't exist
+        create database table if one doesn't exist
         :return: None
         """
         query = f"CREATE TABLE IF NOT EXISTS {PLAYLIST_TABLE} (name TEXT, content TEXT, time Date, id INTEGER PRIMARY KEY AUTOINCREMENT)"
@@ -59,12 +56,12 @@ class DataBase:
 
         # return messages in sorted order by date
         results = []
-        for r in sorted(result, key=lambda x: x[3], reverse=True)[:limit]:
+        for r in sorted(result, key=lambda x: x[3])[:limit]:
             name, content, date, _id = r
             data = {"name":name, "message":content, "time":str(date)}
             results.append(data)
 
-        return list(reversed(results))
+        return list(results)
 
     def get_messages_by_name(self, name, limit=100):
         """
@@ -76,7 +73,7 @@ class DataBase:
 
     def save_message(self, name, msg):
         """
-        saves the given message in the table
+        saves the given message to database table
         :param name: str
         :param msg: str
         :param time: datetime

@@ -8,7 +8,7 @@ load_dotenv(dotenv_path=env_path)
 
 class Config:
     """
-    return the value of the environment variable key
+    return the value of the environment variable key (see .env doc)
     """
     TESTING = os.getenv('TESTING')
     FLASK_DEBUG = os.getenv('FLASK_DEBUG')

@@ -9,11 +9,11 @@ app = create_app()
 socketio = SocketIO(app)
 
 @socketio.on('event')
-def handle_my_custom_event(json, method=['GET','POST']):
+def handle_my_custom_event(json):
     """
-    save messages when receiving it and send it to other clients
+    communication function for event
+    save messages after received data from web server, send data to other clients
     :param json: json
-    :param method: GET POST
     :return: None
     """
     data = dict(json)
@@ -22,5 +22,6 @@ def handle_my_custom_event(json, method=['GET','POST']):
         db.save_message(data["name"],data["message"])
     socketio.emit("message response", json)
 
+# run the app
 if __name__ == '__main__':
     socketio.run(app, debug=True, host=str(config.Config.SERVER))

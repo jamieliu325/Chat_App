@@ -1,31 +1,29 @@
 from flask import render_template, url_for, redirect, request, session, jsonify, flash, Blueprint
 from .database import DataBase
 
+# register blueprint in view
 view = Blueprint("views", __name__)
-
 
 # GLOBAL CONSTANTS
 NAME_KEY = 'name'
 MSG_LIMIT = 20
 
-# VIEWS
-
-
 @view.route("/login", methods=["POST", "GET"])
 def login():
     """
-    displays main login page and handles saving name in session
+    displays main login page and saves input name in session
     :exception POST
     :return: None
     """
-    if request.method == "POST":  # if user input a name
+    # when user input a name, go to home page if input is valid
+    if request.method == "POST":
         name = request.form["inputName"]
         if len(name) >= 2:
             session[NAME_KEY] = name
             flash(f'You were successfully logged in as {name}.')
             return redirect(url_for("views.home"))
         else:
-            flash("1Name must be longer than 1 character.")
+            flash("Name must be longer than 1 character.")
 
     return render_template("login.html", **{"session": session})
 
@@ -33,11 +31,11 @@ def login():
 @view.route("/logout")
 def logout():
     """
-    logs the user out by popping name from session
+    logs the user out and popping name from session
     :return: None
     """
     session.pop(NAME_KEY, None)
-    flash("0You were logged out.")
+    flash("You were logged out.")
     return redirect(url_for("views.login"))
 
 
@@ -56,18 +54,23 @@ def home():
 
 @view.route("/history")
 def history():
+    """
+    gets and displays the history messages sent by current user if logged in
+    :return:
+    """
     if NAME_KEY not in session:
-        flash("0Please login before viewing message history")
+        flash("Please login before viewing message history")
         return redirect(url_for("views.login"))
-
-    json_messages = get_history(session[NAME_KEY])
+    db = DataBase()
+    msgs = db.get_all_messages(MSG_LIMIT)
+    json_messages = remove_seconds_from_messages(msgs)
     return render_template("history.html", **{"history": json_messages})
 
 
 @view.route("/get_name")
 def get_name():
     """
-    :return: a json object storing name of logged in user
+    :return: a json object storing user name
     """
     data = {"name": ""}
     if NAME_KEY in session:
@@ -86,21 +89,6 @@ def get_messages():
 
     return jsonify(messages)
 
-
-@view.route("/get_history")
-def get_history(name):
-    """
-    :param name: str
-    :return: all messages by name of user
-    """
-    db = DataBase()
-    msgs = db.get_messages_by_name(name)
-    messages = remove_seconds_from_messages(msgs)
-
-    return messages
-
-
-# UTILITIES
 def remove_seconds_from_messages(msgs):
     """
     removes the seconds from all messages
@@ -118,6 +106,6 @@ def remove_seconds_from_messages(msgs):
 
 def remove_seconds(msg):
     """
-    :return: string with seconds trimmed off
+    :return: remove the second part from time
     """
     return msg.split(".")[0][:-3]

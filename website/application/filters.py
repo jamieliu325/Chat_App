@@ -12,7 +12,6 @@ def _slice(iterable, pattern):
 
     # convert to list
     items = str(iterable)
-
     start = None
     end = None
     stride = None
@@ -26,5 +25,5 @@ def _slice(iterable, pattern):
             end = int(tokens[1])
         if len(tokens)>3:
             stride = int(tokens[2])
-
+    print(items)
     return items[start:end:stride]
