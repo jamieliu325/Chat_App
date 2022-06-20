@@ -2,7 +2,7 @@
 
 A simple chat app built in Python, Javascript, HTML, and css.
 
-Application: Python flask
+Application: Python flask and Blueprint
 Communication for users and server: Python SocketIO
 Frontend: Javascript, HTML, and css
 
