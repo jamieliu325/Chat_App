@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 # CONSTANTS
-FILE = "messages.db"
+FILE = "../messages.db"
 PLAYLIST_TABLE = "Messages"
 
 
