@@ -68,7 +68,8 @@ function dateNow() {
 }
 
 // socket connection which needs for flask_socketio
-var socket = io.connect("http://" + document.domain + ":" + location.port);
+//var socket = io.connect("http://" + document.domain + ":" + location.port);
+var socket = io.connect("https://chatapplication.azurewebsites.net");
 socket.on("connect", async function () {
   var usr_name = await load_name();
 //  handles event sending/receiving messages
