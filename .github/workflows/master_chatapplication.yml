@@ -64,16 +64,16 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_58B9956B6B5A4D5EB3A97CCBBE6B0232 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_229C3C55AFCA451AA8B9DD0779DBE7B6 }}
 
-      - name: Build Docker image
-        run: |
-          docker build -t chatapplication:latest .
+#      - name: Build Docker image
+#        run: |
+#          docker build -t chatapplication:latest .
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
           app-name: 'ChatApplication'
-          images: 'chatapplication:latest'
-#          slot-name: 'Production'
-#          package: '.'
+#          images: 'chatapplication:latest'
+          slot-name: 'Production'
+          package: '.'
           
