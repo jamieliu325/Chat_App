@@ -32,17 +32,15 @@ def handle_my_custom_event(json):
 
 # --- Run app ---
 if __name__ == "__main__":
-    socketio.run(app)
-    # Use the PORT environment variable assigned by Azure, default 5000 for local testing
-    # port = int(os.environ.get("PORT", 5000))
-    #
-    # # Important: host 0.0.0.0 so Azure can route traffic
-    # socketio.run(
-    #     app,
-    #     host="0.0.0.0",
-    #     port=port,
-    #     debug=True,
-    #     use_reloader=False  # prevents multiple processes on Azure
-    # )
+    # socketio.run(app)
+
+    port = int(os.environ.get("PORT", 5000))
+    socketio.run(
+        app,
+        host="0.0.0.0",
+        port=port,
+        debug=True,
+        use_reloader=False  # prevents multiple processes on Azure
+    )
     # socketio.run(app, debug=True, host=str(config.Config.SERVER))
     # socketio.run(app, host=config.Config.SERVER, port=config.Config.PORT, debug=config.Config.FLASK_DEBUG)

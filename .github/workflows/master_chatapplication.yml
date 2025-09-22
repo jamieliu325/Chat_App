@@ -38,8 +38,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: python-app
-          path: website/
-
+          path: |
+            .
+            !venv/
 
   deploy:
     runs-on: ubuntu-latest
@@ -66,5 +67,5 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'ChatApplication'
-#          slot-name: 'Production'
+          slot-name: 'Production'
           
