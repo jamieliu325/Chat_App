@@ -5,6 +5,7 @@ from website import config
 
 # set up
 app = create_app()
+app.secret_key = "8903"
 # for communications between user and server
 socketio = SocketIO(app)
 
@@ -25,3 +26,4 @@ def handle_my_custom_event(json):
 # run the app
 if __name__ == '__main__':
     socketio.run(app, debug=True, host=str(config.Config.SERVER))
+    # socketio.run(app, host=config.Config.SERVER, port=config.Config.PORT, debug=config.Config.FLASK_DEBUG)

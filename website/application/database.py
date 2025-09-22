@@ -79,6 +79,11 @@ class DataBase:
         :param time: datetime
         :return: None
         """
-        query = f"INSERT INTO {PLAYLIST_TABLE} VALUES (?, ?, ?, ?)"
-        self.cursor.execute(query, (name, msg, datetime.now(), None))
+
+        query = f"INSERT INTO {PLAYLIST_TABLE} (name, content, time) VALUES (?, ?, ?)"
+        self.cursor.execute(query, (name, msg, datetime.now()))
         self.conn.commit()
+
+        # query = f"INSERT INTO {PLAYLIST_TABLE} VALUES (?, ?, ?, ?)"
+        # self.cursor.execute(query, (name, msg, datetime.now(), None))
+        # self.conn.commit()

@@ -13,4 +13,6 @@ class Config:
     TESTING = os.getenv('TESTING')
     FLASK_DEBUG = os.getenv('FLASK_DEBUG')
     SECRET_KEY = os.getenv('SECRET_KEY')
-    SERVER = os.getenv('SERVER')
+    SERVER = '127.0.0.1'
+    # SERVER = os.getenv('SERVER', '127.0.0.1')
+    # PORT = int(os.getenv('PORT', 5000))
