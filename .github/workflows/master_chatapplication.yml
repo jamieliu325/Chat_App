@@ -38,7 +38,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: python-app
-          path: .
+          path: |
+            website/
+            requirements.txt
 
 
   deploy:
