@@ -37,8 +37,8 @@ if __name__ == "__main__":
         app,
         host="0.0.0.0",
         port=port,
-        debug=True,
-        use_reloader=False  # prevents multiple processes on Azure
+        # debug=True,
+        # use_reloader=False  # prevents multiple processes on Azure
     )
     # socketio.run(app, debug=True, host=str(config.Config.SERVER))
     # socketio.run(app, host=config.Config.SERVER, port=config.Config.PORT, debug=config.Config.FLASK_DEBUG)
