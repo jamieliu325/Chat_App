@@ -66,5 +66,5 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'ChatApplication'
-          slot-name: 'Production'
+#          slot-name: 'Production'
           
