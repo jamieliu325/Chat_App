@@ -2,7 +2,11 @@ from flask import Flask
 
 def create_app():
     """ create flask application."""
-    app = Flask(__name__, instance_relative_config=False)
+    app = Flask(
+        __name__,
+        template_folder="application/templates",
+        static_folder="application/static"
+    )
     app.config.from_object('config.Config')
 
     with app.app_context():
