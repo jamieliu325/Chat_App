@@ -25,5 +25,6 @@ def handle_my_custom_event(json):
 
 # run the app
 if __name__ == '__main__':
-    socketio.run(app, debug=True, host=str(config.Config.SERVER))
+    socketio.run(app, host="0.0.0.0", port=5000, debug=True)
+    # socketio.run(app, debug=True, host=str(config.Config.SERVER))
     # socketio.run(app, host=config.Config.SERVER, port=config.Config.PORT, debug=config.Config.FLASK_DEBUG)
