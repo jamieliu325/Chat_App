@@ -1,13 +1,16 @@
+import os
+
 from flask import Flask
 
 def create_app():
     """ create flask application."""
     app = Flask(
         __name__,
-        template_folder="application/templates",
-        static_folder="application/static"
+        template_folder="templates",
+        static_folder="static"
     )
     app.config.from_object('config.Config')
+    app.secret_key = os.environ.get("SECRET_KEY", "omscs")
 
     with app.app_context():
         # Imports
