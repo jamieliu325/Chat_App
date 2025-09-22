@@ -1,7 +1,7 @@
 import os
 
 from website.application import create_app
-from database import DataBase
+from website.application.database import DataBase
 from flask_socketio import SocketIO
 
 # Create Flask app
