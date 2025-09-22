@@ -1,9 +1,8 @@
 import os
 
-from .application import create_app
-from application.database import DataBase
+from website.application import create_app
+from database import DataBase
 from flask_socketio import SocketIO
-from website import config
 
 # Create Flask app
 app = create_app()
