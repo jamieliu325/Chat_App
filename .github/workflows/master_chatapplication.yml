@@ -69,7 +69,7 @@ jobs:
           docker build -t chatapplication:latest .
 
       - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
           app-name: 'ChatApplication'
