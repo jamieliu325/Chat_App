@@ -9,7 +9,7 @@ def create_app():
         template_folder="templates",
         static_folder="static"
     )
-    app.config.from_object('config.Config')
+    # app.config.from_object('config.Config')
     app.secret_key = os.environ.get("SECRET_KEY", "omscs")
 
     with app.app_context():
