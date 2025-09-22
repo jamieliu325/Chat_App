@@ -1,6 +1,6 @@
 import os
 
-from application import create_app
+from .application import create_app
 from application.database import DataBase
 from flask_socketio import SocketIO
 from website import config
