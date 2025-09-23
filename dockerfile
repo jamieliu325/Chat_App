@@ -14,4 +14,5 @@ COPY . .
 EXPOSE 8000
 
 # Start with Gunicorn + Eventlet
-CMD gunicorn -k eventlet -w 1 --bind 0.0.0.0:$PORT website.application.main:app
+# CMD gunicorn -k eventlet -w 1 --bind 0.0.0.0:$PORT website.application.main:app
+CMD ["gunicorn", "-k", "eventlet", "-w", "1", "--bind", "0.0.0.0:8000", "website.application.main:app"]
