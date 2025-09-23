@@ -1,26 +1,21 @@
-# Use official Python image
+# Use an official lightweight Python image
 FROM python:3.13-slim
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-ENV PORT 8000
-
-# Set working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy requirements first for better caching
+# Copy requirements first (better cache)
 COPY requirements.txt .
 
 # Install dependencies
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application
+# Copy your whole project
 COPY . .
 
-# Expose the port
+# Expose port (Azure sets $PORT, but nice for local dev)
 EXPOSE 8000
 
-# Startup command
-CMD ["gunicorn", "-k", "eventlet", "-w", "1", "--bind", "0.0.0.0:8000", "website.application.main:app"]
+# Default startup command (Azure overrides PORT)
+CMD ["gunicorn", "-k", "eventlet", "-w", "1", "--bind", "0.0.0.0:${PORT:-8000}", "website.application.main:app"]
